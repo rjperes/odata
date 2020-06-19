@@ -9,3 +9,5 @@
 /odata/bin
 /odata.common/bin
 /odata.common/obj
+/odata.client/obj
+/odata.client/bin

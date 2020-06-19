@@ -20,8 +20,8 @@ namespace odata.server.Controllers
 
         //GET https://localhost:5001/odata/blogs
         [ODataRoute]
-        //[EnableQuery]
-        [PagingValidatorQuery]
+        [EnableQuery]
+        //[PagingValidatorQuery]
         public IQueryable<Blog> Get(/*ODataQueryOptions<Blog> options*/)
         {
             //Expression<Func<Blog, bool>> func = (blog) => blog.Name.Contains("Ricardo");
