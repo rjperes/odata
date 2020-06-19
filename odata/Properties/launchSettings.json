@@ -18,6 +18,7 @@
     "odata.server": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "http://localhost:5000/odata/Blogs",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

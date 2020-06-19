@@ -2,6 +2,7 @@
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,7 +38,9 @@ namespace odata.server
             services.AddOData();
             services.AddODataQueryFilter();
 
-            services.AddControllersWithViews();
+            services.
+                AddControllersWithViews()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -123,7 +126,6 @@ namespace odata.server
             var count = builder
                 .EntitySet<Blog>("Blogs")
                 .EntityType
-                .Collection
                 .Action("Count");
 
             count.Parameter<int>("id").Required();
@@ -133,11 +135,15 @@ namespace odata.server
             var update = builder
                 .EntitySet<Blog>("Blogs")
                 .EntityType
-                .Collection
                 .Action("Update");
 
             update.EntityParameter<Blog>("blog").Required();
             update.ReturnsFromEntitySet<Blog>("Blogs");
+
+
+            builder
+                .Function("CountBlogPosts")
+                .Returns<int>();
 
             return builder.GetEdmModel();
         }

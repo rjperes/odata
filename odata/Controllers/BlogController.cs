@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNet.OData;
-using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using odata.common;
 using System;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace odata.server.Controllers
 {
-    public class BlogController : Controller
+    [ODataRoutePrefix("Blogs")]
+    public class BlogController : ODataController
     {
         private readonly BlogContext _ctx;
 
@@ -22,6 +21,7 @@ namespace odata.server.Controllers
         //GET https://localhost:5001/odata/blogs
         [ODataRoute]
         //[EnableQuery]
+        [PagingValidatorQuery]
         public IQueryable<Blog> Get(/*ODataQueryOptions<Blog> options*/)
         {
             //Expression<Func<Blog, bool>> func = (blog) => blog.Name.Contains("Ricardo");
