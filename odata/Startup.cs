@@ -36,7 +36,7 @@ namespace odata.server
             });
 
             services.AddOData();
-            services.AddODataQueryFilter();
+            //services.AddODataQueryFilter();
 
             services.
                 AddControllersWithViews()
