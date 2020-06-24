@@ -37,25 +37,25 @@ namespace odata.server.Controllers
         }
 
         //GET https://localhost:5001/odata/blogs/FindByCreation(date=2009-08-01)
+        [HttpGet]
         [EnableQuery]
         [ODataRoute("FindByCreation(date={date})")]
-        [HttpGet]
         public IQueryable<Blog> FindByCreation(DateTime date)
         {
             return _ctx.Blogs.Where(x => x.Creation.Date == date);
         }
 
         //GET https://localhost:5001/odata/blogs/CountPosts(id=1)
-        [ODataRoute("CountPosts(id={id})")]
         [HttpGet]
+        [ODataRoute("CountPosts(id={id})")]
         public int CountPosts(int id)
         {
             return _ctx.Blogs.Where(x => x.BlogId == id).Select(x => x.Posts).Count();
         }
 
         //POST https://localhost:5001/odata/blogs/Blog(1)/Count
-        [ODataRoute("({id})/Count")]
         [HttpPost]
+        [ODataRoute("({id})/Count")]
         public int Count([FromODataUri] int id)
         {
             return _ctx.Blogs.Where(x => x.BlogId == id).Select(x => x.Posts).Count();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.OData.Builder;
+﻿using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,7 +40,7 @@ namespace odata.server
             services.AddODataQueryFilter(new PagingValidatorQueryAttribute());
 
             services.
-                AddControllersWithViews()
+                AddControllers()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
@@ -48,10 +49,6 @@ namespace odata.server
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseRouting();
