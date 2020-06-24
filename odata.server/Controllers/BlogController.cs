@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNet.OData;
-using Microsoft.AspNet.OData.Query;
-using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using odata.common;
+using odata.server.Models;
 using System;
 using System.Linq;
 

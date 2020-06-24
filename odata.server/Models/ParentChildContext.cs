@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using odata.common;
 
-namespace odata.server
+namespace odata.server.Models
 {
     public class ParentChildContext : DbContext
     {

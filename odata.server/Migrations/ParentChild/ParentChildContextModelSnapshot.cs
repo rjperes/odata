@@ -2,15 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+using odata.server.Models;
 
 namespace odata.server.Migrations.ParentChild
 {
     [DbContext(typeof(ParentChildContext))]
-    [Migration("20200619114821_Initial")]
-    partial class Initial
+    partial class ParentChildContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

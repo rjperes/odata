@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
 using odata.common;
+using odata.server.Models;
 using System.Linq;
 
 namespace odata.server.Controllers
