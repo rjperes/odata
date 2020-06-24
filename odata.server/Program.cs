@@ -1,26 +1,39 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace odata.server
 {
-    public class Program
+    public static class Program
     {
-        public static void Main(string[] args)
+        public static void Main(string[] args) =>
+            CreateWebHostBuilder(args)
+                .Build()
+                .CreateDbIfNotExists()
+                .Run();
+
+        private static IHost CreateDbIfNotExists(this IHost host)
         {
-            CreateHostBuilder(args).Build().Run();
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                var parentChildContext = services.GetRequiredService<ParentChildContext>();
+                parentChildContext.Database.EnsureCreated();
+
+                var blogContext = services.GetRequiredService<BlogContext>();
+                blogContext.Database.EnsureCreated();
+            }
+
+            return host;
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+            Host
+                .CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(builder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    builder.UseStartup<Startup>();
                 });
     }
 }

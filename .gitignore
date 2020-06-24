@@ -5,8 +5,8 @@
 *.suo
 *.user
 /.vs
-/odata/obj
-/odata/bin
+/odata.server/obj
+/odata.server/bin
 /odata.common/bin
 /odata.common/obj
 /odata.client/obj
