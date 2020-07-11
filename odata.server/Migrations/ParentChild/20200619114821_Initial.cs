@@ -19,6 +19,11 @@ namespace odata.server.Migrations.ParentChild
                     table.PrimaryKey("PK_Parents", x => x.Id);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Parents",
+                columns: new[] { "Name" },
+                values: new object[] { "A Parent" });
+
             migrationBuilder.CreateTable(
                 name: "Children",
                 columns: table => new
@@ -38,6 +43,16 @@ namespace odata.server.Migrations.ParentChild
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Children",
+                columns: new[] { "Name", "ParentId" },
+                values: new object[] { "One Child", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Children",
+                columns: new[] { "Name", "ParentId" },
+                values: new object[] { "Another Child", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Children_ParentId",

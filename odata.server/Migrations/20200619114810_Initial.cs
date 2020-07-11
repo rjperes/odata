@@ -22,6 +22,11 @@ namespace odata.server.Migrations
                     table.PrimaryKey("PK_Blogs", x => x.BlogId);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Blogs",
+                columns: new[] { "Name", "Url", "Creation" },
+                values: new object[] { "Development with a Dot", "https://weblogs.asp.net/ricardoperes", new DateTime(2008, 08, 01) });
+
             migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
@@ -44,6 +49,11 @@ namespace odata.server.Migrations
                         principalColumn: "BlogId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Posts",
+                columns: new[] { "BlogId", "Title", "Timestamp", "Body", "Url" },
+                values: new object[] { 1, "First Post", new DateTime(2008, 08, 01), "This is the first post!", "https://weblogs.asp.net/ricardoperes/first-post" });
 
             migrationBuilder.CreateTable(
                 name: "Comment",
