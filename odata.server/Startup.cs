@@ -39,8 +39,8 @@ namespace odata.server
             services.AddOData();
             services.AddODataQueryFilter(new PagingValidatorQueryAttribute());
 
-            services.
-                AddControllers()
+            services
+                .AddControllers()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 

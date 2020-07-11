@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -20,9 +21,11 @@ namespace odata.server
 
                 var parentChildContext = services.GetRequiredService<ParentChildContext>();
                 parentChildContext.Database.EnsureCreated();
+                //parentChildContext.Database.Migrate();
 
                 var blogContext = services.GetRequiredService<BlogContext>();
                 blogContext.Database.EnsureCreated();
+                //blogContext.Database.Migrate();
             }
 
             return host;
