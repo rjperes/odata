@@ -15,12 +15,14 @@ namespace odata.server.Controllers
             this._ctx = ctx;
         }
 
+        //GET https://localhost:5001/odata/Parents
         [ODataRoute]
         public IQueryable<Parent> Get()
         {
             return this._ctx.Parents.AsQueryable();
         }
 
+        //GET https://localhost:5001/odata/Parents(1)
         [ODataRoute("{id}")]
         public Parent Get([FromODataUri] int id)
         {
