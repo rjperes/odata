@@ -28,12 +28,12 @@ namespace odata.server
         {
             services.AddDbContext<ParentChildContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("Parents"));
             });
 
             services.AddDbContext<BlogContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("Blogs"));
             });
 
             services.AddOData();
